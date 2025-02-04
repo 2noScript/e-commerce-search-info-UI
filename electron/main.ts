@@ -2,11 +2,13 @@ import { app, BrowserWindow, ipcMain } from "electron";
 import { createRequire } from "node:module";
 import { fileURLToPath } from "node:url";
 import path from "node:path";
+import test from "./utils"
+
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const require = createRequire(import.meta.url);
-const { _electron } = require("playwright");
+// const Br=require("browser-worker")
 
 // The built directory structure
 //
@@ -18,14 +20,18 @@ const { _electron } = require("playwright");
 // │ │ └── preload.mjs
 // │
 
+
+
 const openPlaywright = async () => {
-  console.log();
   try {
-    const electronApp = await _electron.launch({
-      executablePath: app.getPath("exe"),
-    });
-    const window = await electronApp.firstWindow();
-    await window.goto("https://tes.tidesquare.com/login");
+
+
+    //  const worker=new Br.BrowserWorker()
+    // worker.runTask(async (page:any)=>{
+    //    await page.goto("https://example.com/")
+    // })
+   await test()
+    
   } catch (error) {
     console.log(error);
     win?.webContents.send("fail", {
